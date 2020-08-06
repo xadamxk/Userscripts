@@ -1,13 +1,14 @@
 // ==UserScript==
 // @name         Yahtzee Enhancements (cardgames.io)
 // @namespace    Adam K
-// @version      1.0.0
-// @description  Calculates sum for bonus and game total
+// @version      1.0.1
+// @description  Adds useful features to the game
 // @require http://code.jquery.com/jquery-3.5.1.min.js
-// @author       Adam Koewler
+// @author       Adam K
 // @match        https://cardgames.io/yahtzee*
 // ==/UserScript==
 // ------------------------------ Change Log ----------------------------
+// version 1.0.1: Bugfix: Calculating total logic
 // version 1.0.0: Release
 // === Settings ===
 const interval = 100;
@@ -65,7 +66,7 @@ function updateSumTotal(playerId){
 function calculateTotal(playerId, type = rolls){
     var total = 0;
     // TODO: Use ES6 function and return it
-    Object.keys(type).forEach(function(row){
+    Object.values(type).forEach(function(row){
         total += getRowValue(row, playerId);
     });
     return total
@@ -73,7 +74,7 @@ function calculateTotal(playerId, type = rolls){
 
 function getRowValue(id, playerId){
     try {
-        let value = parseInt($j(`#${id} > td:eq(${playerId}):not(.candidate)`).text());
+        let value = parseInt($j(`#${id} > td:eq(${playerId}):not(".candidate")`).text());
         return !isNaN(value)? value : 0
     } catch(error){
         return 0
