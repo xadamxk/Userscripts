@@ -7,8 +7,6 @@
 // @require     https://code.jquery.com/jquery-3.1.1.js
 // @match      *://gol.gg/champion/list/*
 // @copyright  2016+
-// @updateURL https://github.com/xadamxk/HF-Userscripts/raw/master/Other%20Sites/GOLScrapper.user.js
-// @downloadURL https://github.com/xadamxk/HF-Userscripts/raw/master/Other%20Sites/GOLScrapper.user.js
 // @iconURL https://raw.githubusercontent.com/xadamxk/HF-Userscripts/master/scripticon.jpg
 // @grant    GM_setClipboard
 // ==/UserScript==
