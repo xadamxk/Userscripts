@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Liquidpedia Scrapper
+// @name         Liquidpedia Scraper
 // @namespace    xadamxk
 // @version      0.0.2
 // @description  Scraps player information on team pages
