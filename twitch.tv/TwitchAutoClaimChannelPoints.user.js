@@ -9,12 +9,17 @@
 // @match        *://twitch.tv/*
 // ==/UserScript==
 // === Settings ===
-const interval = 1000;
-
+// ------------------------------ Changelog -----------------------------
+// v 1.0.1: Fixed typo, Cleaned up logic
+// v 1.0.0: Initial commit
+// ------------------------------ Dev Notes -----------------------------
+// TODO: Use observer rather than interval
+// ------------------------------ SETTINGS ------------------------------
+const interval = 1000; // milliseconds
+// ------------------------------ SCRIPT ------------------------------
 setInterval(checkForClaimButton, interval);
 
 function checkForClaimButton() {
-    //console.log("checking for claim button...");
     const claimButton = $(".tw-button.tw-button--success.tw-interactive");
     if (claimButton.length > 0) {
         claimButton.click();
