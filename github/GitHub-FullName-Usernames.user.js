@@ -2,7 +2,7 @@
 // @name        GitHub Append Full Name to Username
 // @author      Adam Koewler
 // @namespace   https://github.com/xadamxk/HF-Scripts
-// @version     1.1.2
+// @version     1.1.3
 // @description Adds GitHub profile names following username occurrences
 // @require     https://code.jquery.com/jquery-3.1.1.js
 // @require     https://cdn.jsdelivr.net/npm/axios@0.19.0/dist/axios.min.js
@@ -13,8 +13,11 @@
 // @grant       GM_getValue
 // @grant       GM_setValue
 // @grant       GM_deleteValue
+// @updateURL   https://github.com/xadamxk/Userscripts/raw/master/github/GitHub-FullName-Usernames.user.js
+// @downloadURL https://github.com/xadamxk/Userscripts/raw/master/github/GitHub-FullName-Usernames.user.js
 // ==/UserScript==
 // ------------------------------ Changelog -----------------------------
+// v 1.1.3: Added update and download URL
 // v 1.1.2: Conditions to check for non-user accounts (ie dependabot)
 // v 1.1.1: Updated match, update, and download URLs with new domain
 // v 1.1.0: Added support for post HARP migration names
@@ -23,7 +26,9 @@
 // v 1.0.0: Initial commit
 // ------------------------------ Dev Notes -----------------------------
 // https://github.com/Trim21/axios-userscript-adapter
-// TODO: Move logic into function, run function, run again after 3-5 seconds
+// TODO: Move logic into function, run function, and listen for page layout dom changes using observers.
+//
+// To use this script for private GitHub instances, simply change the the @match url above and the baseURL below to match your base domain.
 // ------------------------------ SETTINGS ------------------------------
 const baseURL = "https://github.com/"
 const selectors = [
@@ -32,7 +37,6 @@ const selectors = [
     "span[data-hovercard-type='user'] > .assignee",     // reviewers
 ]
 const debug = false
-//const usernameRegex = new RegExp("/[a-zA-Z]{2}\d{4}/");
 // ------------------------------ SETTINGS ------------------------------
 // Import Axios Adapter to connect to XHR
 axios.defaults.adapter  = axiosGmxhrAdapter;
