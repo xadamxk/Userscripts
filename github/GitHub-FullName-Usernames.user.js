@@ -27,6 +27,7 @@
 // ------------------------------ Dev Notes -----------------------------
 // https://github.com/Trim21/axios-userscript-adapter
 // TODO: Move logic into function, run function, and listen for page layout dom changes using observers.
+// TODO: Create dprint method to help with redundancy.
 //
 // To use this script for private GitHub instances, simply change the the @match url above and the baseURL below to match your base domain.
 // ------------------------------ SETTINGS ------------------------------
