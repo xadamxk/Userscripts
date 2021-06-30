@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Twitch Auto Claim Channel Points
 // @namespace    xadamxk
-// @version      0.0.1
+// @version      1.0.0
 // @description  Automatically claims channel points.
 // @require https://code.jquery.com/jquery-3.1.1.js
 // @author       Adam K
@@ -10,7 +10,6 @@
 // ==/UserScript==
 // === Settings ===
 // ------------------------------ Changelog -----------------------------
-// v 1.0.1: Fixed typo, Cleaned up logic
 // v 1.0.0: Initial commit
 // ------------------------------ Dev Notes -----------------------------
 // TODO: Use observer rather than interval
