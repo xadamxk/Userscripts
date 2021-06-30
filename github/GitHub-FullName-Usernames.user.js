@@ -37,7 +37,7 @@ const selectors = [
     "span[data-hovercard-type='user'] > .assignee",     // reviewers
 ]
 const debug = false
-// ------------------------------ SETTINGS ------------------------------
+// ------------------------------ SCRIPT ------------------------------
 // Import Axios Adapter to connect to XHR
 axios.defaults.adapter  = axiosGmxhrAdapter;
 let usernames = {};
