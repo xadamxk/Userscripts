@@ -12,6 +12,8 @@
 // v 1.0.1: Bugfix for appending to all nav elements
 // v 1.0.0: Initial commit
 // ------------------------------ Dev Notes -----------------------------
+// Stay hydrated out there!
+// ------------------------------ SETTINGS ------------------------------
 // Supported types: seperator, header, item
 function Favorite(type, label, link){
     this.type = type;
@@ -29,7 +31,7 @@ const favorites = [
     new Favorite("header","Other",null),
     new Favorite("item", "HFX 2.0", "/xadamxk/HFX2.0"),
 ];
-// ------------------------------ SETTINGS ------------------------------
+// ------------------------------ SCRIPT ------------------------------
 $("nav:eq(0)").append($("<div>").addClass("Header-item position-relative d-none d-md-flex")
                 .append($("<span>"))
                 .append($("<details>").addClass("details-overlay details-reset")
