@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Yahtzee Enhancements (cardgames.io)
 // @namespace    Adam K
-// @version      1.1.0
+// @version      1.2.0
 // @description  Adds useful features to the game
 // @require      https://code.jquery.com/jquery-3.5.1.min.js
 // @require      https://cdnjs.cloudflare.com/ajax/libs/attrchange/2.0.1/attrchange.min.js
@@ -9,14 +9,17 @@
 // @match        https://cardgames.io/yahtzee*
 // ==/UserScript==
 // ------------------------------ Change Log ----------------------------
+// version 1.2.0: Added odds column
 // version 1.1.0: Replaced setInterval trigger with Observable listener
 // version 1.0.1: Bugfix: Calculating total logic
 // version 1.0.0: Release
 // === Settings ===
+var $j = jQuery.noConflict();
 const interval = 100;
 const sumGoal = 63;
 const bonus = 35;
 const numRounds = 13;
+const totalDice = 5;
 const players = {
     1: 0,
     2: 1
@@ -86,7 +89,6 @@ const gameRounds = (({ bonus, ...o }) => o)(options)
 const singleRollOdds = (({ ones, twos, threes, fours, fives, sixes, bonus, ...o }) => o)(options)
 
 // === Script ===
-var $j = jQuery.noConflict();
 // Append difference row
 appendDifferenceRow();
 // Append single row odds
@@ -100,6 +102,13 @@ $j(".dice").attrchange({
         if (event.oldValue !== event.newValue && event.attributeName == "alt") {
             updateSumTotal(players["1"]);
             updateSumTotal(players["2"]);
+            $j(".odds:eq(0)").text(formatPercentage(calculateSingleDieOdds(1)))
+            $j(".odds:eq(1)").text(formatPercentage(calculateSingleDieOdds(2)))
+            $j(".odds:eq(2)").text(formatPercentage(calculateSingleDieOdds(3)))
+            $j(".odds:eq(3)").text(formatPercentage(calculateSingleDieOdds(4)))
+            $j(".odds:eq(4)").text(formatPercentage(calculateSingleDieOdds(5)))
+            $j(".odds:eq(5)").text(formatPercentage(calculateSingleDieOdds(6)))
+
             // TODO: Trigger event to calculate odds
         }
     }
@@ -169,6 +178,16 @@ function appendOddsColumn() {
 }
 
 // Experimental
+function getDiceCount(desiredDie) {
+    return getDice()["all"].filter(die => {
+        return desiredDie == die;
+    }).length;
+}
+
+function formatPercentage(decimal) {
+    return (decimal * 100).toFixed(2) + "%";
+}
+
 function getDice() {
     let dice = { saved: [], throw: [], all: [] };
     $j(".dice").each(function (index, die) {
@@ -186,28 +205,31 @@ function getDice() {
     return dice;
 }
 
-function getTurnRound() {
-    let message = $("#messageBox").text();
+function getRemainingRounds() {
+    let message = $j("#messageBox").text();
     let throws = -1;
-    // If includes turn, don't run
-    if (message.includes("turn") || message.includes("begin")) return throws;
+    // If includes turn/begin, don't run
+    if (message.includes("turn") || message.includes("begin")) {
+        return throws;
+    }
     try {
-        throws = parseInt(message.match(/\d+/g));
+        throws = parseInt(message.match(/\d+/g)) || 0;
     } catch (error) {
         throws = 0
     }
-    // Convert throws left to round number
-    switch (throws) {
-        case 2: return 1;
-        case 1: return 2;
-        default: return 3;
-    }
+    return throws
 }
 
 function getGameRound(playerId) {
     return Object.values(gameRounds).filter(option => {
         return $j(`#${option.id} > td:eq(${playerId}):not(".candidate")`).text().length > 0;
     }).length + 1; // +1 to fix 0 index
+}
+
+function calculateSingleDieOdds(die) {
+    const remainingRounds = getRemainingRounds();
+    if (remainingRounds < 1) return 0;
+    return (Math.pow((1 / 6), totalDice - getDiceCount(die))) * remainingRounds;
 }
 
 // source: https://stackoverflow.com/a/20762713:
