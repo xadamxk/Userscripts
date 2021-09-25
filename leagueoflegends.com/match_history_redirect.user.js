@@ -2,12 +2,12 @@
 // @name        LOL Match History Redirect
 // @author      Adam Koewler
 // @namespace   https://github.com/xadamxk/Userscripts
-// @version     0.0.1
+// @version     1.0.0
 // @description Automatically redirects from obsolete match history to LeagueOfGraph's game page.
 // @match       *://www.leagueoflegends.com/en-us/news/game-updates/turning-off-web-match-history/*
 // @copyright   2021+
-// @updateURL
-// @downloadURL
+// @updateURL   https://github.com/xadamxk/Userscripts/raw/master/leagueoflegends.com/match_history_redirect.user.js
+// @downloadURL https://github.com/xadamxk/Userscripts/raw/master/leagueoflegends.com/match_history_redirect.user.js
 // ==/UserScript==
 // ------------------------------ Changelog -----------------------------
 // v1.0.0: Update and Download URLs
