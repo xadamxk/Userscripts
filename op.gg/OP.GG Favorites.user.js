@@ -2,7 +2,7 @@
 // @name        OP.GG Favorites
 // @author      Adam Koewler
 // @namespace   https://github.com/xadamxk/Userscripts
-// @version     1.0.0
+// @version     1.0.1
 // @description Adds shortcut links to OP.GG's headers of favorited profiles
 // @require     https://code.jquery.com/jquery-3.1.1.js
 // @match       *://www.op.gg/*
@@ -16,8 +16,8 @@
 // @match       *://lan.op.gg/*
 // @match       *://ru.op.gg/*
 // @match       *://tr.op.gg/*
-// @updateURL
-// @downloadURL
+// @updateURL   https://github.com/xadamxk/Userscripts/raw/master/op.gg/OP.GG%20Favorites.user.js
+// @downloadURL https://github.com/xadamxk/Userscripts/raw/master/op.gg/OP.GG%20Favorites.user.js
 // @copyright   2022+
 // ==/UserScript==
 // ------------------------------ Changelog -----------------------------
